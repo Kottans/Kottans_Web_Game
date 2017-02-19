@@ -12,3 +12,4 @@ This repository is a pet project for Kottans Web Course 2017!
 ## Participants
 - [@lempiy](https://github.com/lempiy)
 - [@amashoshyna](https://github.com/AMashoshyna)
+- [@m-vv](https://github.com/m-vv)
