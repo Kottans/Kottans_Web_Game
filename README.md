@@ -1,5 +1,8 @@
 # KottansGame
 
+[![Join the chat at https://gitter.im/Kottans/Web_Course_1-Canvas_game](https://badges.gitter.im/Kottans/Web_Course_1-Canvas_game.svg)](https://gitter.im/Kottans/Web_Course_1-Canvas_game?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
 This repository is a pet project for Kottans Web Course 2017!
 
 
