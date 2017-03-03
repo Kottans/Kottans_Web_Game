@@ -1,6 +1,6 @@
 version: '2'
 services:
-//name of service can be used to calling them
+
   mongo:
     image: mongo
     ports:
