@@ -6,6 +6,20 @@ const memory = require('feathers-memory');
 const authentication = require('feathers-authentication');
 const bodyParser = require('body-parser');
 const handler = require('feathers-errors/handler');
+const mongoose = require('mongoose');
+const service = require('feathers-mongoose');
+
+// Require your models
+const mes = require('./mes-model');
+
+// Tell mongoose to use native promises
+// See http://mongoosejs.com/docs/promises.html
+mongoose.Promise = global.Promise;
+
+// Connect to your MongoDB instance(s)
+mongoose.connect('mongodb://mongo:27017');
+//mongo from docker-compose.yml
+
 
 // A Feathers app is the same as an Express app
 const app = feathers();
@@ -31,6 +45,14 @@ app.use(handler());
 app.service('users').before({
   create: authentication.hooks.hashPassword()
 });
+// Connect to the db, create and register a Feathers service.
+app.use('mess', service({
+  Model: mes,
+  paginate: {
+    default: 2,
+    max: 4
+  }
+}));
 
 // Create a test user
 app.service('users').create({

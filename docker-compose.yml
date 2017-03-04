@@ -1,5 +1,11 @@
 version: '2'
 services:
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
   front-end:
     build: .
     command: npm start
@@ -21,3 +27,5 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "3000:3000"
+    links:
+      - mongo
