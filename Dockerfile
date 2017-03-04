@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 COPY ./package.json /usr/src/app/
 RUN npm install @angular/cli -g
 RUN npm install supervisor -g
+RUN npm install -g feathers-cli
 
 RUN npm install
 
