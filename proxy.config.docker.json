@@ -1,24 +1,24 @@
 {
 
   "/form": {
-    "target": "http://localhost:3000/",
+    "target": "http://feathers:3000/",
     "secure": false,
     "pathRewrite": {"^/form" : ""}
   },
   "/login.html": {
-    "target": "http://localhost:3000/",
+    "target": "http://feathers:3000/",
     "secure": false
   },
   "/signup.html": {
-    "target": "http://localhost:3000/",
+    "target": "http://feathers:3000/",
     "secure": false
   },
   "/signup/*": {
-    "target": "http://localhost:3000/",
+    "target": "http://feathers:3000/",
     "secure": false
   },
   "/auth/*": {
-    "target": "http://localhost:3000/",
+    "target": "http://feathers:3000/",
     "secure": false
   }
 }

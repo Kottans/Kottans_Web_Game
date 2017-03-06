@@ -13,6 +13,17 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const mongoose = require('mongoose');
+const service = require('feathers-mongoose');
+
+
+mongoose.Promise = global.Promise;
+// Connect to your MongoDB instance(s)
+if (process.env.NODE_HOST === 'docker') {
+  mongoose.connect('mongodb://mongo:27017/');
+} else {
+  mongoose.connect('mongodb://localhost:27017/');
+}
 
 const app = feathers();
 
@@ -30,5 +41,6 @@ app.use(compress())
   .configure(socketio())
   .configure(services)
   .configure(middleware);
+
 
 module.exports = app;
