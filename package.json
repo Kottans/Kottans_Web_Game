@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --proxy-config proxy.config.json",
+    "start-docker":  "ng serve --proxy-config proxy.config.docker.json --host 0.0.0.0",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,15 +23,23 @@
     "@angular/router": "^3.4.0",
     "body-parser": "^1.16.1",
     "core-js": "^2.4.1",
-    "feathers": "^2.0.3",
+    "feathers": "^2.1.0",
     "feathers-authentication": "^0.7.12",
+    "feathers-configuration": "^0.3.3",
     "feathers-errors": "^2.5.0",
-    "feathers-hooks": "^1.7.1",
+    "feathers-hooks": "^1.8.1",
     "feathers-memory": "^1.1.0",
-    "feathers-rest": "^1.6.0",
-    "feathers-socketio": "^1.4.2",
+    "feathers-mongoose": "^5.0.3",
+    "feathers-rest": "^1.7.1",
+    "feathers-socketio": "^1.5.1",
+    "mongoose": "^4.8.5",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.7.6",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "passport": "^0.3.2",
+    "winston": "^2.3.1",
+    "serve-favicon": "^2.4.1"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-beta.32.3",
@@ -49,6 +58,7 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "typescript": "~2.0.0",
+    "request": "^2.79.0"
   }
 }

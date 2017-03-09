@@ -1,8 +1,18 @@
 version: '2'
 services:
-  front-end:
-    build: .
-    command: npm start
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo
+
+  angular:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-front
+    command: npm run start-docker
     environment:
       NODE_ENV: development
     volumes:
@@ -10,14 +20,35 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "4200:4200"
+    links:
+        - feathers
+    depends_on:
+        - feathers
+    networks:
+        - feathers
 
-  back-end:
+  feathers:
     build: .
-    command: supervisor app.js
+    command: supervisor server/index.js
     environment:
       NODE_ENV: development
+      NODE_HOST: docker
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - "3000:3000"
+    links:
+      - mongo
+      # - front-end
+    depends_on:
+      - mongo
+    networks:
+      - feathers
+      - mongo
+
+networks:
+  feathers:
+    driver: bridge
+  mongo:
+    driver: bridge
