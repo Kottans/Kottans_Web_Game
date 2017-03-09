@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+app-mainhall {
+    flex: 1 0 auto;
+}
+
+nav .brand-logo {
+    padding: 0 15px;
+}
+.add-btn {
+    margin-top: 22px;
+}
+
+.chat {
+    margin-top: -0.5rem;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.section-header {
+    margin-bottom: -1rem;
+    color: white;
+    margin-top: 30px;
+}
+.connect-btn {
+    width: 100%;
+}
+.message-input{
+    margin-top: -0.5rem;
+}
