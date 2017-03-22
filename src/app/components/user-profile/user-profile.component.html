@@ -1,0 +1,58 @@
+
+<!-- <img [src]='getUserAvatartUrl()' alt='.'/> -->
+<!-- src="http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg" -->
+<section class="user-profile card" >
+    <div class="user-profile__header" [ngStyle]="{'background-image': 'url(' + data.profileBackGround + ')'}">
+      <div class="transparent_row">
+        <div class="user-profile__avatar">
+          <img [src]='data.avatar' alt="">
+        </div>
+        <h1 class="user-profile__name">{{data.userName}}</h1>
+        <div class="user-profile__cell games"> Games <span>{{data.allGames}}</span></div>
+        <div class="user-profile__cell wins"> Wins <span>{{data.winsGames/data.allGames*100 | round}}%</span></div>
+        <div class="user-profile__cell connectin"> Last game <span>{{data.lastGame}}</span></div>
+      </div>
+    </div>
+
+
+   <div class="card-content grafic">
+     <p><span>Some cool game grafic..</span></p>
+   </div>
+
+   <div class="card-tabs">
+     <ul class="tabs">
+       <li class="tab"><a href="#test4">Tab 1</a></li>
+       <li class="tab"><a href="#test5">Tab 2</a></li>
+       <li class="tab"><a class="active" href="#test6">History</a>
+       </li>
+     </ul>
+   </div>
+
+   <div class="card-content grey lighten-4">
+     <div id="test4">Test 1</div>
+     <div id="test5">Test 2</div>
+     <div id="test6">
+       <table class="striped" *ngIf="data.historyGames">
+         <thead>
+           <tr>
+               <th>Date</th>
+               <th>Time</th>
+               <th>Duration</th>
+               <th>Players</th>
+               <th>Winer</th>
+           </tr>
+         </thead>
+
+         <tbody>
+           <tr *ngFor="let game of data.historyGames">
+             <td>{{game.start | date: 'dd/MM/yyyy'}}</td>
+             <td>{{game.start | date: 'h:mm'}}</td>
+             <td>{{game.end - game.start | date: 'h'}}</td>
+             <td>{{game.players}}</td>
+             <td>{{game.winer}}</td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+</section>
