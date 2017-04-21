@@ -16,6 +16,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { RoundPipe } from './components/round.pipe';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { AuthService } from './services/auth.service';
+import { ApiRealtimeService } from './services/api-realtime.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    ApiRealtimeService
 
   ],
   bootstrap: [AppComponent]

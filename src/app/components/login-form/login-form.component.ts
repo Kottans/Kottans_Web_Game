@@ -65,6 +65,6 @@ export class LoginFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this._authService);
+        // console.log(this._authService);
     }
 }
