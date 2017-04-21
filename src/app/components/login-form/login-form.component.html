@@ -1,0 +1,21 @@
+<div class="signin-container">
+  <form [formGroup]="loginData">
+    <div class="group">
+      <input type="email" formControlName="email" name="login"><span class="highlight"></span><span class="bar"></span>
+      <label>Email</label>
+    </div>
+    <div class="group">
+      <input type="email" formControlName="password" name="password"><span class="highlight"></span><span class="bar"></span>
+      <label>Password</label>
+    </div>
+    <button type="button" class="button buttonBlue" (click)="signup()">Sign up
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+    <button type="button" class="button buttonGreen" (click)="login(loginData.value.email, loginData.value.password)">Log in
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+    <button type="button" class="button buttonRed" (click)="cancel()">Cancel
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+  </form>
+</div>
