@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { Pipe } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,10 @@ import { ChatComponent } from './components/chat/chat.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { RoundPipe } from './components/round.pipe';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { AuthService } from './services/auth.service';
+import { ApiRealtimeService } from './services/api-realtime.service';
+
 
 @NgModule({
   declarations: [
@@ -23,15 +28,20 @@ import { RoundPipe } from './components/round.pipe';
     ChatComponent,
     GameListComponent,
     UserProfileComponent,
-    RoundPipe
+    RoundPipe,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    ReactiveFormsModule
   ],
   providers: [
+    AuthService,
+    ApiRealtimeService
+
   ],
   bootstrap: [AppComponent]
 })
