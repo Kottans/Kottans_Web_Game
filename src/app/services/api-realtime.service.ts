@@ -14,32 +14,33 @@ const superagent = require('superagent');
 const HOST = 'http://localhost:3000'; // Your base server URL here
 @Injectable()
 export class ApiRealtimeService {
-  private _app: any;
-  // public signUpService: any;
-  constructor() {
-    this._app = feathers() // Initialize feathers
-      .configure(rest(HOST).superagent(superagent)) // Fire up rest
-      .configure(hooks())
-      .configure(authentication({ storage: window.localStorage, path: '/auth/local' })) // Configure feathers-hooks
-  }
+    private _feathers: any;
+    private _socket: any;
+    constructor() {
+        this._socket = io('http://localhost:3000');
+
+        this._feathers = feathers();
+        this._feathers.configure(hooks());
+        this._feathers.configure(socketio(this._socket));
+        this._feathers.configure(authentication({
+            storage: window.localStorage
+        }));
+    }
 
 
-  get app(): any {
-    return this._app;
-  }
+    get app(): any {
+        return this._feathers;
+    }
 
-  // expose services
-  public service(name: string) {
-    return this._app.service(name);
-  }
+    public service(name: string) {
+        return this._feathers.service(name);
+    }
 
-  // expose authentication
-  public authenticate(credentials?): Promise<any> {
-    return this._app.authenticate(credentials);
-  }
+    public authenticate(credentials?): Promise<any> {
+        return this._feathers.authenticate(credentials)
+    }
 
-  // expose logout
-  public logout() {
-    return this._app.logout();
-  }
+    public logout() {
+        return this._feathers.logout();
+    }
 }

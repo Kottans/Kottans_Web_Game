@@ -17,7 +17,6 @@ export class ApiRestService {
     this._app = feathers() // Initialize feathers
       .configure(rest(HOST).superagent(superagent)) // Fire up rest
       .configure(hooks()) // Configure feathers-hooks
-       .configure(authentication())
   }
 
   get app() {

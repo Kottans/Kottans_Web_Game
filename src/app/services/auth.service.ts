@@ -5,20 +5,15 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-    // private _socket;
 
-    constructor(private _socketService: ApiRealtimeService,
-        private router: Router) {
-    }
+    constructor(private feathers: ApiRealtimeService, private router: Router) { }
 
     public logIn(credentials?): Promise<any> {
-        return this._socketService.authenticate(credentials);
+        return this.feathers.authenticate(credentials);
     }
 
     public logOut() {
-        this._socketService.logout();
+        this.feathers.logout();
         this.router.navigate(['/']);
-
-
-    }
+    };
 }
