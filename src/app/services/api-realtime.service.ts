@@ -26,8 +26,6 @@ export class ApiRealtimeService {
             storage: window.localStorage,
             path: '/auth/local',
         }));
-        window['feathers'] = this._feathers
-        console.log(window['feathers'])
     }
 
 
