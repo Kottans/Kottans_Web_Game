@@ -21,10 +21,13 @@ export class ApiRealtimeService {
 
         this._feathers = feathers();
         this._feathers.configure(hooks());
-        this._feathers.configure(socketio(this._socket));
+        this._feathers.configure(rest('http://localhost:3000').superagent(superagent));
         this._feathers.configure(authentication({
-            storage: window.localStorage
+            storage: window.localStorage,
+            path: '/auth/local',
         }));
+        window['feathers'] = this._feathers
+        console.log(window['feathers'])
     }
 
 
@@ -38,6 +41,21 @@ export class ApiRealtimeService {
 
     public authenticate(credentials?): Promise<any> {
         return this._feathers.authenticate(credentials)
+        .then(response => {
+            console.log('Authenticated!', response);
+            this._feathers.passport.setJWT(response.token)
+            return this._feathers.passport.verifyJWT(response.token);
+        })
+        .then(payload => {
+            return this._feathers.service('users').get(payload._id);
+        })
+        .then(user => {
+            this._feathers.set('user', user);
+            console.log('User', this._feathers.get('user'));
+        })
+        .catch(function(error){
+            console.error('Error authenticating!', error);
+        });
     }
 
     public logout() {
