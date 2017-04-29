@@ -17,6 +17,7 @@ import { RoundPipe } from './components/round.pipe';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { AuthService } from './services/auth.service';
 import { ApiRealtimeService } from './services/api-realtime.service';
+import { ChatService } from './services/chat.service';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ApiRealtimeService } from './services/api-realtime.service';
   ],
   providers: [
     AuthService,
-    ApiRealtimeService
+    ApiRealtimeService,
+    ChatService
 
   ],
   bootstrap: [AppComponent]
