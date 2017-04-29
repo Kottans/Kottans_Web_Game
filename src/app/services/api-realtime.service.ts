@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as feathers from 'feathers/client';
+import * as feathers from 'feathers-client';
+import * as feathersRx from 'feathers-reactive';
 import * as socketio from 'feathers-socketio/client';
 import * as io from 'socket.io-client';
 import * as localstorage from 'feathers-localstorage';
@@ -8,6 +9,7 @@ import * as rest from 'feathers-rest/client';
 import * as authentication from 'feathers-authentication-client';
 
 const superagent = require('superagent');
+import * as Rx from 'rxjs';
 
 
 
@@ -17,10 +19,12 @@ export class ApiRealtimeService {
     private _feathers: any;
     private _socket: any;
     constructor() {
-        this._socket = io('http://localhost:3000');
 
+        this._socket = io('http://localhost:3000');
         this._feathers = feathers();
         this._feathers.configure(hooks());
+        this._feathers.configure(feathersRx(Rx));
+        // this._feathers.configure(socketio(this._socket))
         this._feathers.configure(rest('http://localhost:3000').superagent(superagent));
         this._feathers.configure(authentication({
             storage: window.localStorage,
@@ -39,21 +43,21 @@ export class ApiRealtimeService {
 
     public authenticate(credentials?): Promise<any> {
         return this._feathers.authenticate(credentials)
-        .then(response => {
-            console.log('Authenticated!', response);
-            this._feathers.passport.setJWT(response.token)
-            return this._feathers.passport.verifyJWT(response.token);
-        })
-        .then(payload => {
-            return this._feathers.service('users').get(payload._id);
-        })
-        .then(user => {
-            this._feathers.set('user', user);
-            console.log('User', this._feathers.get('user'));
-        })
-        .catch(function(error){
-            console.error('Error authenticating!', error);
-        });
+            .then(response => {
+                console.log('Authenticated!', response);
+                this._feathers.passport.setJWT(response.token)
+                return this._feathers.passport.verifyJWT(response.token);
+            })
+            .then(payload => {
+                return this._feathers.service('users').get(payload._id);
+            })
+            .then(user => {
+                this._feathers.set('user', user);
+                console.log('User', this._feathers.get('user'));
+            })
+            .catch(function (error) {
+                console.error('Error authenticating!', error);
+            });
     }
 
     public logout() {

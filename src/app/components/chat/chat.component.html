@@ -1,50 +1,17 @@
 <div class="col s12 m6 l6">
-  <ul class="collection with-header section-header">
-      <li class="collection-header  yellow darken-3"><h5>Chat</h5></li>
+    <ul class="collection with-header section-header">
+        <li class="collection-header  yellow darken-3">
+            <h5>Chat</h5>
+        </li>
     </ul>
-  <ul class="collection chat">
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
-      <li class="collection-item avatar">
-          <img src="https://avatars1.githubusercontent.com/u/2372431?v=3&s=460" alt="" class="circle">
-          <span class="title">Progarmulya</span>
-          <p>Let's the party begin</p>
-      </li>
+    <ul class="collection chat">
+        <li class="collection-item avatar" *ngFor="let message of messages$ | async">
+            <span class="title">User name here</span>
+            <p>{{message.text}}</p>
+        </li>
     </ul>
     <div class="input-field col s12 message-input">
-      <input placeholder="Write your message" type="text" >
-  </div>
+        <input #msg placeholder="Write your message" type="text">
+        <button (click)="sendMessage(msg.value); msg.value=''">SEND</button>
+    </div>
 </div>
