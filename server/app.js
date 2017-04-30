@@ -15,6 +15,7 @@ const middleware = require('./middleware');
 const services = require('./services');
 const mongoose = require('mongoose');
 const service = require('feathers-mongoose');
+const authentication = require('./services/authentication');
 
 
 mongoose.Promise = global.Promise;
@@ -39,6 +40,8 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
+
+.configure(authentication)
   .configure(services)
   .configure(middleware);
 
