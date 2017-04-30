@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent implements OnInit {
   messages$: Observable<any[]>;
@@ -14,6 +14,9 @@ export class ChatComponent implements OnInit {
 
   constructor(private chat: ChatService) {
     this.messages$ = chat.messages$()
+      .map(message => {
+        return message
+      })
   }
 
   sendMessage(message: string) {
