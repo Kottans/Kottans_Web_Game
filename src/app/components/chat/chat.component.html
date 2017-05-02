@@ -4,14 +4,14 @@
             <h5>Chat</h5>
         </li>
     </ul>
-    <ul class="collection chat">
+    <ul class="collection chat" #chat [scrollTop]="chat.scrollHeight">
         <li class="collection-item avatar" *ngFor="let message of messages$ | async">
             <span class="title">User name here</span>
             <p>{{message.text}}</p>
         </li>
     </ul>
     <div class="input-field col s12 message-input">
-        <input #msg placeholder="Write your message" type="text">
+        <input #msg placeholder="Write your message" type="text" (keydown.enter)="sendMessage(msg.value); msg.value=''">
         <button (click)="sendMessage(msg.value); msg.value=''">SEND</button>
     </div>
 </div>
