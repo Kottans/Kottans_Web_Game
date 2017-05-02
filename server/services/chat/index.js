@@ -18,4 +18,11 @@ module.exports = function() {
   chatService.before({
     create: [auth.hooks.authenticate("jwt")]
   });
+  chatService.after({
+    all(hook) {
+
+      hook.result.user = hook.params.user
+ 
+    }
+  });
 };
