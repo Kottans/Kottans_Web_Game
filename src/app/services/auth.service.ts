@@ -8,8 +8,12 @@ export class AuthService {
 
     constructor(private feathers: ApiRealtimeService, private router: Router) { }
 
-    public logIn(credentials?): Promise<any> {
-        return this.feathers.authenticate(credentials);
+    public logIn(email?, password?): Promise<any> {
+        return this.feathers.authenticate({
+            strategy: 'local',
+            email,
+            password
+        });
     }
 
     public logOut() {
