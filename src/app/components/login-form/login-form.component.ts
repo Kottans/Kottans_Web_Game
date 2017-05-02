@@ -17,6 +17,7 @@ export class LoginFormComponent implements OnInit {
     private _authService;
     private _feathers;
     loginData: FormGroup;
+    error = '';
 
     constructor(
         // private authService: AuthService, 
@@ -34,11 +35,12 @@ export class LoginFormComponent implements OnInit {
 
 
     login(email: string, password: string) {
+        this.error = '';
         if (!email || !password) {
             return;
         }
 
-        return this.feathers.authenticate({
+        this.feathers.authenticate({
             strategy: 'local',
             email,
             password
@@ -46,13 +48,17 @@ export class LoginFormComponent implements OnInit {
             .then((result) => {
                 console.log(result)
                 this.router.navigate(['/']);
-            }, error => console.log(error))
+            }, error => {
+                this.error = 'Authentication failed';
+                console.log(error)
+            })
             .catch(err => {
                 console.error(err);
             });
     }
 
     signup(email: string, password: string) {
+        this.error = '';
         this.feathers.service('users')
             .create({ email: this.loginData.value.email, password: this.loginData.value.password })
             .then(() => console.log('User created.'))

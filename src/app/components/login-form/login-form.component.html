@@ -17,5 +17,6 @@
     <button type="button" class="button buttonRed" (click)="cancel()">Cancel
     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   </button>
+    <div *ngIf="error" class="alert">{{error}}</div>
   </form>
 </div>
